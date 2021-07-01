@@ -4,21 +4,28 @@ import {useForm} from 'react-hook-form'
 import {DataTarjet} from './DataTarjet'
 import {FormCheck,BoxForm,FormCheckOut,Box_input,Input}  from './styles'
 import {useSelector} from 'react-redux'
-import { useState } from 'react';
+import { useState,useEffect} from 'react';
 import {IoArrowBackCircle} from "react-icons/io5";
 import {SHIPPING_DATA,CANCEL_SHIPPING_DATA} from '../../redux/actions/types'
 import {useDispatch} from 'react-redux'
+import {SendDataPayClient} from './AxiosFormPay'
 
 function CheckOut(props){
+    
+
+
     const dispatch = useDispatch()
     const {register,handleSubmit,formState:{errors} }   = useForm()
     const {items} = useSelector(state => state.package);
     const {getCard}  = useSelector(state => state.cardData);
+    const card  = useSelector(state => state.cardData);
+    const Shipping  = useSelector(state => state.Shipping);
 
     const [Active, setActive] = useState(true)
     const [Display, setDisplay] = useState(true)
     let res = 0;
 
+    
 
     if(items){
         res = items.reduce((acc,item)=>{
@@ -53,6 +60,10 @@ function CheckOut(props){
 
         setActive(false)
         setDisplay(false)
+    }
+
+    const handlePlaceOrder = ()=>{
+        SendDataPayClient(Shipping,card) 
     }
 
     
@@ -232,7 +243,7 @@ function CheckOut(props){
 
 
                     <BoxItemsProduct>
-                        <ButtonPalceOrder disabled={getCard} onClick={ () => alert('order')} > Place Order </ButtonPalceOrder>
+                        <ButtonPalceOrder disabled={getCard} onClick={ () => handlePlaceOrder() } > Place Order </ButtonPalceOrder>
                         <Line/>
                         <BoxOrder>  
                             <OrderSumary>Order Sumary</OrderSumary>
