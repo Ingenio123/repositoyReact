@@ -1,0 +1,69 @@
+@media (max-width: 575px) {
+    .about{
+        display: block;
+    }
+    .spaces{
+        width: 100%;
+        display: block;
+    }
+    .about__image__teacher img{
+        margin-bottom: 0 !important;
+    }
+    .eslogan{
+        width: 100%;
+    }
+    .presentation p{
+        width: 90%;
+    }
+    .teaches_profesional{
+        display: block;
+    }
+    .profesional_background{
+        margin-top: 20px;
+        width: 100%;
+    }
+    .profesional_background span h4{
+        text-align: center;
+        margin-right: 0px;
+    }
+    .data{
+        width: 100%;
+    }
+    
+}
+
+@media (max-width: 454px) {
+    .about{
+        display: block;
+    }
+    
+    .spaces{
+        width: 100%;
+        display: block;
+    }
+    .about__image__teacher img{
+        margin-bottom: 0 !important;
+    }
+    .eslogan{
+        width: 100%;
+    }
+    .presentation p{
+        width: 90%;
+    }
+    .teaches_profesional{
+        display: block;
+    }
+    .data{
+        width: 100%;
+    }
+    .profesional_background{
+        width: 100%;
+        margin-top: 20px;
+    }
+    .profesional_background span h4{
+        text-align: center;
+        margin-right: 0px;
+    }
+
+  }
+  

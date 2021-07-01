@@ -1,0 +1,16 @@
+.Image-form{
+   height: 20rem !important;
+}
+
+
+@media screen and (max-width: 800px)  {
+    .Image-form{
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .Image-form{
+        display: none !important;
+    }
+}

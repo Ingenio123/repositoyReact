@@ -1,0 +1,28 @@
+
+.form__card{
+    width: 100%;
+    border:2px solid silver;
+    padding:5px 1rem;
+    border-radius:5px;
+    color: #535966;
+}
+.form__card__icons{
+    width: 83%;
+    border:2px solid silver;
+    padding:5px 1rem;
+    border-radius:5px;
+    color: #535966;
+}
+.form__card__icons:focus{
+    border:2px solid rgb(49, 69, 132,.5);
+    box-shadow: 0 0 0 .2rem rgba(49,69,132,.25);
+}
+.form__card:focus {
+    border:2px solid rgb(49, 69, 132,.5);
+    box-shadow: 0 0 0 .2rem rgba(49,69,132,.25);
+}
+.Icons__Card svg{
+    margin-left: 4px;
+    font-size:35px;
+}
+

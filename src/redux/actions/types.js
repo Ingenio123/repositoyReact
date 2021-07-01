@@ -1,0 +1,18 @@
+export const USER_LOADING = "USER_LOADING";
+export const USER_LOADED = "USER_LOADED";
+export const AUTH_ERROR = "AUTH_ERROR";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const GET_ERRORS = 'GET_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const GET_TOKEN = 'GET_TOKEN';
+export const AUTH_GOOGLE = 'AUTH_GOOGLE';
+export const LOGIN_GOOGLE_SUCCESS = 'LOGIN_GOOGLE_SUCCESS'
+export const SHIPPING_DATA = 'SHIPPING_DATA';
+export const CARD_DATA =  'CARD_DATA';
+export const CANCEL_SHIPPING_DATA = 'CANCEL_SHIPPING_DATA';
+export const PRICE_LESSON = 'PRICE_LESSON';
+
