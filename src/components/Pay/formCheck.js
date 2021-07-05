@@ -10,6 +10,8 @@ import {SHIPPING_DATA,CANCEL_SHIPPING_DATA} from '../../redux/actions/types'
 import {useDispatch} from 'react-redux'
 import {SendDataPayClient} from './AxiosFormPay'
 
+import Success from '../../assets/images/Success.svg'
+
 function CheckOut(props){
     
 
@@ -23,6 +25,7 @@ function CheckOut(props){
 
     const [Active, setActive] = useState(true)
     const [Display, setDisplay] = useState(true)
+    const [Loader, setLoader] = useState(false);
     let res = 0;
 
     
@@ -62,10 +65,33 @@ function CheckOut(props){
         setDisplay(false)
     }
 
-    const handlePlaceOrder = ()=>{
-        SendDataPayClient(Shipping,card) 
+    const handlePlaceOrder = async ()=>{
+        const valorTotalPagar = res +  ValorTotal();
+
+        const resultadoFunction = await SendDataPayClient(Shipping,card,valorTotalPagar);
+        // #########################################
+        // aqui me quede tengo que hacer un  Design ui para presentar al cliente que todo a salido bien todo OK 
+        // ################################################
+        
+        if(resultadoFunction){
+            console.log('todo salio bien')
+            setLoader(true);
+        }
+        
     }
 
+    function RenderComponentsSuccess (){
+        return (
+            <BoxSuccess>
+                <BoxIconSucces> 
+                    <img  src={Success}  alt="imgae" />
+                    <div>
+                        <span>thank you! you're done</span>
+                    </div>
+                </BoxIconSucces>
+            </BoxSuccess>
+        )
+    }
     
 
 
@@ -243,21 +269,26 @@ function CheckOut(props){
 
 
                     <BoxItemsProduct>
-                        <ButtonPalceOrder disabled={getCard} onClick={ () => handlePlaceOrder() } > Place Order </ButtonPalceOrder>
-                        <Line/>
-                        <BoxOrder>  
-                            <OrderSumary>Order Sumary</OrderSumary>
-                            <ItemsOrder>
-                                <span>items({items? items.length : '0'}):</span> <span>$ {res !== 0 ? res : 0}</span>
-                            </ItemsOrder>
-                            <ItemsOrder>
-                                <span>Before Tax (+12%): </span> <span>$ { ValorTotal() } </span>
-                            </ItemsOrder>
-                            <Line mb={true} />
-                            <ItemsOrder>
-                                <Order_total>Order Total</Order_total> <Order_total>$ {res !== 0 ? res + ValorTotal() : 0} </Order_total>
-                            </ItemsOrder>
-                        </BoxOrder>
+                    
+                        {Loader? RenderComponentsSuccess() :
+                            <div>
+                                <ButtonPalceOrder disabled={getCard} onClick={ () => handlePlaceOrder() } > Place Order </ButtonPalceOrder>
+                                <Line/>
+                                <BoxOrder>  
+                                    <OrderSumary>Order Sumary</OrderSumary>
+                                    <ItemsOrder>
+                                        <span>items({items? items.length : '0'}):</span> <span>$ {res !== 0 ? res : 0}</span>
+                                    </ItemsOrder>
+                                    <ItemsOrder>
+                                        <span>Before Tax (+12%): </span> <span>$ { ValorTotal() } </span>
+                                    </ItemsOrder>
+                                    <Line mb={true} />
+                                    <ItemsOrder>
+                                        <Order_total>Order Total</Order_total> <Order_total>$ {res !== 0 ? res + ValorTotal() : 0} </Order_total>
+                                    </ItemsOrder>
+                                </BoxOrder>
+                            </div>
+                        }
                     </BoxItemsProduct>
                 <DataTarjet activeInputs = {Active} Display={Display} /> 
                 </FormCheck>
@@ -266,6 +297,34 @@ function CheckOut(props){
     )
 }
 export default CheckOut;
+
+const BoxSuccess = styled.div `    
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`
+const BoxIconSucces = styled.div `
+    margin-top: 10px;
+    text-align:center;
+    width: 80%;
+    & > img {
+        padding:10px;
+        width: 70%;
+    }
+    & > div {
+        display: flex;
+        justify-content: center;
+    }
+    & div > span {
+        text-align: center;
+        font-size: 30px;
+        color:#27ae60;
+    }
+`
+
+
 
 const BoxItemsProduct  = styled.div `
     width:100%;
