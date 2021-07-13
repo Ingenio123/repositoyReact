@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import {Login} from '../../redux/actions/authAction'
 import {useDispatch,useSelector} from 'react-redux'
-import { withRouter,Redirect}  from 'react-router-dom'
+import { withRouter,Redirect,Link}  from 'react-router-dom'
 import {SignInGoogle} from '../../redux/actions/authAction';
 import {GoogleLogin} from 'react-google-login'
 import axios from 'axios'
@@ -91,20 +91,6 @@ const SignIn =  props =>{
                     if(isAuth().rol === 'teacher') return props.history.push('/teacherPage');
                     return props.history.push('/private')
                 }
-
-                // switch (isAuth().rol){
-                //     case 'admin':
-                //             props.history.push('/admin')
-                //             break
-                //     case 'teacher':
-                //             props.history.push('/teacherPage')
-                //             break;
-                //     case 'user':
-                //         props.history.push('/private')
-                //         break;
-                //     default:
-                //         return  props.history.push('/')
-                // }
             });
         };
         
@@ -161,9 +147,12 @@ const SignIn =  props =>{
                                     onSuccess={responseGoogle}
                                     onFailure={responseGoogle}
                                     cookiePolicy={'single_host_origin'}
-                                />,
+                                />
+                            
                             </Centrar>
-                        
+                            <SingUpCenter>
+                                <ButtonSignUp to="/SignUp">Sing Up</ButtonSignUp>
+                            </SingUpCenter>
                         </div>
 
                         <div className="col-md-6 ">
@@ -227,4 +216,16 @@ const GoogleButton = styled.button `
         border:none;
         padding:8px 2rem;
     }
+`
+
+
+const  SingUpCenter = styled.div `
+    width:100%;
+    display:flex;
+    justify-content:center;
+
+`
+
+const ButtonSignUp = styled(Link) `
+    font-size:20px;
 `

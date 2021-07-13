@@ -17,6 +17,7 @@ export const Footer = () => {
                     <CopyRight> Copyright © 2021 </CopyRight>
                </Container>
             </SectionFooter>
+            
         </>
     );
 }

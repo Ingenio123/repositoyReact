@@ -22,6 +22,8 @@ import {Admin} from './components/Private/Admin';
 
 import {TeacherRoutes} from './Routes/TeacherRoute'
 import {Teacher} from './components/Private/Teacher'
+import resultDatafast from './components/Pay/PageResultDatafast'
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -37,7 +39,7 @@ ReactDOM.render(
             <PrivateRouter path='/private' exact  component={UserPrivate} />
             <AdminRoute path="/admin" exact component={Admin} />
             <TeacherRoutes  path='/teacherPage' exact  component={Teacher} />
-
+            <Route exact path="/results/" component={resultDatafast} />
           </Switch>
       </Router>
     </Provider>

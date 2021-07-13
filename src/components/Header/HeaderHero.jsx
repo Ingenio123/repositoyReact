@@ -12,12 +12,17 @@ height:30px;
 width:30px;
 `;
 
+const DeleteReload  = ()=>{
+  window.localStorage.removeItem('Reload');
+}
+
+
 const HeaderHero = () =>{
 
     const auth = useSelector(state => state.auth)
 
     useEffect(()=>{
-
+      DeleteReload();
     },[])
 
 

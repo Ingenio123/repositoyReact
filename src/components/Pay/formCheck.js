@@ -1,5 +1,4 @@
 import styled  from 'styled-components'
-import React from "react";
 import {useForm} from 'react-hook-form'
 import {DataTarjet} from './DataTarjet'
 import {FormCheck,BoxForm,FormCheckOut,Box_input,Input}  from './styles'
@@ -11,6 +10,9 @@ import {useDispatch} from 'react-redux'
 import {SendDataPayClient} from './AxiosFormPay'
 
 import Success from '../../assets/images/Success.svg'
+import DatafastPay from './FormPayDatafast'
+import {isAuth} from '../../helpers/Auth'
+
 
 function CheckOut(props){
     
@@ -19,32 +21,41 @@ function CheckOut(props){
     const dispatch = useDispatch()
     const {register,handleSubmit,formState:{errors} }   = useForm()
     const {items} = useSelector(state => state.package);
-    const {getCard}  = useSelector(state => state.cardData);
-    const card  = useSelector(state => state.cardData);
-    const Shipping  = useSelector(state => state.Shipping);
+    const Shipping  = useSelector(state => state.Shipping)
+    
+    const [Loader, setLoader] = useState(false)
+    const [ActiveButton, setActiveButton] = useState(true)
+    const [Show, setShow] = useState(false)
+    const [IdCheck, setIdCheck] = useState('')
 
-    const [Active, setActive] = useState(true)
-    const [Display, setDisplay] = useState(true)
-    const [Loader, setLoader] = useState(false);
+
+    const [CardDebit, setCardDebit] = useState(false);
+    const [CardCredit, setCardCredit] = useState(false);
+
+
     let res = 0;
 
     
 
     if(items){
+        const arrayPrices = [];
+        items.map(val => arrayPrices.push(val.price))
+        console.log(arrayPrices)
         res = items.reduce((acc,item)=>{
             return  acc +=  item.price;
         },0)
     }
+
+
     // ############## CALCULO DEL BEFORE TAX ############# 
     
 
     function ValorTotal(){
         let valIva = 12;
         let CobroIva = (res  * valIva) / 100;
-
         return CobroIva;
     }
-
+  
 
     const handleArrowLeft =  ()=>{
         props.history.push('/');
@@ -54,30 +65,30 @@ function CheckOut(props){
         })
     }
 
-    const HandleData = (data)=> {
-        
+    const HandleData = async (data)=> {
+        let userData;
+
+        if(isAuth()){
+            userData = JSON.parse(window.localStorage.getItem('user'))
+        }else{
+            window.localStorage.setItem('Auth','NotAuth')
+            return props.history.push('/SignUp')
+        }
+
         dispatch({
             type: SHIPPING_DATA,
             shippingDataForm:data
         })
 
-        setActive(false)
-        setDisplay(false)
-    }
+        if(res>0){
+            
+            setActiveButton(false)
+            const Cobrar  = res + ValorTotal()
+            const resultadoFunction = await SendDataPayClient(data,Cobrar,res,items,userData._id,userData.email)
+            setIdCheck(resultadoFunction.resultados.id)
+            setShow(true)
 
-    const handlePlaceOrder = async ()=>{
-        const valorTotalPagar = res +  ValorTotal();
-
-        const resultadoFunction = await SendDataPayClient(Shipping,card,valorTotalPagar);
-        // #########################################
-        // aqui me quede tengo que hacer un  Design ui para presentar al cliente que todo a salido bien todo OK 
-        // ################################################
-        
-        if(resultadoFunction){
-            console.log('todo salio bien')
-            setLoader(true);
         }
-        
     }
 
     function RenderComponentsSuccess (){
@@ -94,9 +105,21 @@ function CheckOut(props){
     }
     
 
+    const handleShowsCards = (Debit,Credit)=>{
+        if(Debit) {
+            setCardDebit(true)
+            setCardCredit(false)
+        }
+        if(Credit){
+            setCardDebit(false)
+            setCardCredit(true)
+            return <DatafastPay id={IdCheck} /> 
+        }
+    }
 
     return (
         <>
+            
             <Section className="container">
                 <IconsArrow> <IconsArrowLeft onClick={()=> handleArrowLeft()} /> </IconsArrow>
                 <FormCheck>
@@ -272,7 +295,6 @@ function CheckOut(props){
                     
                         {Loader? RenderComponentsSuccess() :
                             <div>
-                                <ButtonPalceOrder disabled={getCard} onClick={ () => handlePlaceOrder() } > Place Order </ButtonPalceOrder>
                                 <Line/>
                                 <BoxOrder>  
                                     <OrderSumary>Order Sumary</OrderSumary>
@@ -290,13 +312,25 @@ function CheckOut(props){
                             </div>
                         }
                     </BoxItemsProduct>
-                <DataTarjet activeInputs = {Active} Display={Display} /> 
+                    <div>
+                        { Show ? <DatafastPay id={IdCheck} /> : '' }
+                    </div>
                 </FormCheck>
             </Section>
         </>
     )
 }
+{/* <DatafastPay id={IdCheck} /> */}
 export default CheckOut;
+
+const  ButtonCards = styled.button `
+    border:none;
+    background-color: blueviolet;
+    padding: 4px 10px;
+    color:white;
+    border-radius: 4px;
+`
+
 
 const BoxSuccess = styled.div `    
     margin: 0;

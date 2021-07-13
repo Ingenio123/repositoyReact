@@ -3,7 +3,7 @@ import {useDispatch, useSelector}  from 'react-redux'
 import {useForm} from 'react-hook-form';
 import {Register}  from '../../redux/actions/authAction'
 import { isAuth } from '../../helpers/Auth';
-import {withRouter,Redirect} from 'react-router-dom';
+import {withRouter,Redirect,Link} from 'react-router-dom';
 
 const SignUp = props =>{
 
@@ -146,6 +146,11 @@ const SignUp = props =>{
                         </div>
                     </div>
                 </form>
+                <div className="row">
+                    <div className="col-md-6 text-center">
+                         <ButtonSignIn to="/SignIn" >Sign In</ButtonSignIn>
+                    </div>
+                </div>
             </div>
         </>
     );
@@ -163,4 +168,11 @@ const BtnSubmit =  styled.button `
     padding:8px 0;
     border:none;
     border-radius:10px;
+`
+const ButtonSignIn =  styled(Link)`
+    font-size:20px;
+    font-weight: 700;
+    &:hover{
+        text-decoration:underline;
+    }
 `

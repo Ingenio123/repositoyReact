@@ -21,10 +21,8 @@ export const DataTarjet = (props) => {
             payload: data
         })
     }
-
     return (
         <>  
-           
                 <BoxFormCard display={props.Display}  onSubmit={handleSubmit(data => DataCard(data) )}  >  {/*  <<--FORMULARIO-->>  */}
                         <FormCheckOut cardCredit={true} >
                             <Box_input>
@@ -98,7 +96,7 @@ export const DataTarjet = (props) => {
                                 />
                             </Box_input>
                             <Box_input_submit>
-                                <Input_send disabled={true} type="button" value="Cancel" />
+                                <Input_send  type="button" value="Cancel" />
                                 <Input_send  type="submit" value="Send"  />
                             </Box_input_submit>
                         </FormCheckOut>

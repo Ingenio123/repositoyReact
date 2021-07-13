@@ -1,0 +1,121 @@
+https://test.oppwa.com/v1/checkouts?entityId=8ac7a4c87a1e95a8017a1fd6acae073c&amount=3&currency=USD&paymentType=DB&customer.givenName=carlos&customer.middleName=alexander&customer.surname=Arteaga&customer.ip=181.39.246.76&customer.merchantCustomerId=60b800c52963f559f9db99eb&merchantTransactionId=transaction_112233&customer.email=usuario%40gmial.com&customer.identificationDocType=IDCARD&customer.identificationDocId=1234567890&customer.phone=0993909800&billing.street1=Guayaquil&billing.country=EC&billing.postcode=230112&shipping.street1=Guayaquil&shipping.country=EC&risk.parameters%5BUSER_DATA2%5D=DATAFAST&customParameters%5BSHOPPER_MID%5D=1000000505&customParameters%5BSHOPPER_TID%5D=PD100406&customParameters%5BSHOPPER_ECI%5D=0103910&customParameters%5BSHOPPER_PSERV%5D=17913101&customParameters%5BSHOPPER_VAL_BASE0%5D=2.00&customParameters%5BSHOPPER_VAL_BASEIMP%5D=1.00&customParameters%5BSHOPPER_VAL_IVA%5D=0.12&cart.items%5B0%5D.name=cursoIngles&cart.items%5B0%5D.description=Descripcion%3AcursoIngles&cart.items%5B0%5D.price=10&cart.items%5B0%5D.quantity=1&customParameters%5BSHOPPER_VERSIONDF%5D=2&testMode=EXTERNAL
+
+https://test.oppwa.com/v1/checkouts?entityId=8ac7a4c87a1e95a8017a1fd6acae073c&amount=67.20&currency=USD&paymentType=DB&customer.givenName=carlos&customer.middleName=alexander&customer.surname=Arteaga&customer.ip=181.39.246.76&customer.merchantCustomerId=60b800c52963f559f9db99eb&merchantTransactionId=transaction_112233&customer.email=usuario@gmial.com&customer.identificationDocType=IDCARD&customer.identificationDocId=1234567890&customer.phone=0993909800&billing.street1=Guayaquil&billing.country=EC&billing.postcode=230112&shipping.street1=Guayaquil&shipping.country=EC&risk.parameters[USER_DATA2]=DATAFAST&customParameters[SHOPPER_MID]=1000000505&customParameters[SHOPPER_TID]=PD100406&customParameters[SHOPPER_ECI]=0103910&customParameters[SHOPPER_PSERV]=17913101&customParameters[SHOPPER_VAL_BASE0]=0&customParameters[SHOPPER_VAL_BASEIMP]=60&customParameters[SHOPPER_VAL_IVA]=7.2&cart.items[0].name=cursoIngles&cart.items[0].description=Descripcion:cursoIngles&cart.items[0].price=10&cart.items[0].quantity=1&customParameters[SHOPPER_VERSIONDF]=2&testMode=EXTERNAL
+
+
+
+
+
+
+
+
+
+
+
+si grava_iva 
+val_imp ==> valor_product_real 
+val_base_0 ==> valor 0 
+
+si  no graba iva 
+
+
+
+{
+  "id": "8ac7a4a07a7b889a017a7ce85a37535f",
+  "paymentType": "DB",
+  "paymentBrand": "VISA",
+  "amount": "67.20",
+  "currency": "USD",
+  "descriptor": "9431.9201.8486 INGENIOLANGUAGES",
+  "merchantTransactionId": "transaction_112233",
+  "result": {
+    "code": "000.100.112",
+    "description": "Request successfully processed in 'Merchant in Connector Test Mode'"
+  },
+  "resultDetails": {
+    "RequestId": "350560975073",
+    "RiskFraudStatusCode": "ACCEPT",
+    "AuthCode": "000001",
+    "ConnectorTxID1": "8ac7a4a07a7b889a017a7ce85a37535f",
+    "ReferenceNbr": "210706_000017",
+    "BatchNo": "210706",
+    "EXTERNAL_SYSTEM_LINK": "https://csi-stage.redworldwide.com/index.red#transactiondetail/000537210268XBV20210706134040759",
+    "TotalAmount": "67.20",
+    "OrderId": "943192018486",
+    "Interest": "0.00",
+    "RiskStatusCode": "PENDING",
+    "Response": "00",
+    "ExtendedDescription": "Transaccion aprobada",
+    "clearingInstituteName": "Datafast",
+    "RiskResponseCode": "0100",
+    "AcquirerCode": "04",
+    "CardType": "VG",
+    "AcquirerResponse": "00_04VG",
+    "action": "created",
+    "RiskOrderId": "000537210268XBV20210706134040759",
+    "ReferenceNo": "000017"
+  },
+  "card": {
+    "bin": "454063",
+    "binCountry": "EC",
+    "last4Digits": "0000",
+    "holder": "ingenio languages",
+    "expiryMonth": "04",
+    "expiryYear": "2022"
+  },
+  "customer": {
+    "givenName": "carlos",
+    "surname": "Arteaga",
+    "middleName": "alexander",
+    "merchantCustomerId": "60b800c52963f559f9db99eb",
+    "phone": "0993909800",
+    "email": "usuario@gmial.com",
+    "identificationDocType": "IDCARD",
+    "identificationDocId": "1234567890",
+    "ip": "181.39.246.76",
+    "ipCountry": "EC",
+    "browserFingerprint": {
+      "value": "0400CIfeAe15Cx8Nf94lis1ztk3VnLnG+SJj0Hfp5ie720w8AumhGlPp3LC3yzV1/uVLSLOS3mruQCzk1eXuO7gGCUfgUZuLE2xCJiDbCfVZTGBk19tyNs7g87Mc/hl2WkFqcGTTeTQEtp7ph/T+lMlRTBNagwJDR5g5DJ0qCc4gMpergecSo06izVzqeMmBCH/i9cmKrLQxcxA5OE2KkOZe/0jXzk77ILZ/eUsQ7RNrLro1kTKIs1496YkpIh3A707lm2e25SQbo1MSe0j6YHslc5QwZL+dV7LqGkVKa/txj+TmY1XpDGBtyepPcth3j49Fpr7Pp25JBWHx9pFXsPHzWyhB37MA1PsmDzwmRgBi5Ch6Ig5mRbhc1IccIsc7vpDm/qN5Wbo6BZvb8RzWdzZK4fJVm89gFH8vlQBoF2hK6VVCSOP8F/eyAGlZmakw+7cndFvPrWIExT4AVb+/xu7YUOowfmZjGrzu0rdKBra3m4aJSZW2HrZpz73svogYfpU03bL0KKFAq43HvJpxYj49ImVFF/nThFFG4FSIHwHpYAtoudx24GrElqLE8yqMVQun0jxRYAmjKb1P4ehBV15lxAS8lzAjoF6GlDBkv51XsurEqYqLQTmZsk7jig0BA918sj69LfM7VRY6PHjnH1mXAwl2Y1Y/iacviOp1DitfVc7IB9QxnksoWoWXzUILvpZkpdqSgJrtcJbgiEms7PTw/N/7HinDpb16xsYSmrsKhFi8VDdLGBfK9PH/LgnAtMTg3G/gqjChOr2rPETcvZEPZ4ugU3dZpTZSTMj6Y82LrlflYU9iUMb03QtuHmc6Pe7cNepEKIoJSuwSQy3zP1/E72kssZVBQohhHbBPDncKJYr3oU6k968Na0fZdHRCR853TYPvefzXHqEQwLLSzeFEufTxOH0WU0cMwkGouP5PPytx99u/rUsZumpF1NHwHq7tpJKsfBQMMMqDfwB2gaCHQdRMNyUGqfGrMDUMzvXPCzwOyaN4lVP/yscig79nrjyICoyvH2Q65TGwF1mgAYDs2pOFQ4JbIBLYfqYAndlMe7aRkDkd2CSCXDwxgWQHuVc06NDUWnOZYN7cE4nZ3meVnnb6dxDioksejgtHHqqE28hv5t2asbd8NQZ+i8aFjp2buuK69Oy8ERl2acnO6ECFet8WnTRNo6m+qNyABHWwfsQsl2RE758GOh77KWduNZRZysMapNO8gyHpU4inY7D/Gx7W8+moNCK5yx/4V2s/2XXmx2vNwg2QeqJIwtc20zpU/kOiq6q/QO6hgJ+4UXdOqhABsbTN5jvbmn+Ifv12g/afYmHRu2WVbpa3c3jVldoE"
+    }
+  },
+  "billing": {
+    "street1": "Guayaquil",
+    "postcode": "230112",
+    "country": "EC"
+  },
+  "shipping": {
+    "street1": "Guayaquil",
+    "country": "EC"
+  },
+  "customParameters": {
+    "SHOPPER_VAL_BASEIMP": "60",
+    "SHOPPER_EndToEndIdentity": "a5b8b48f2e57a54da66ac33b7cb1c57bbb458f6992fa754792af466c01d57bfc",
+    "CTPE_DESCRIPTOR_TEMPLATE": "",
+    "SHOPPER_ECI": "0103910",
+    "SHOPPER_MID": "1000000505",
+    "SHOPPER_PSERV": "17913101",
+    "SHOPPER_VAL_BASE0": "0",
+    "SHOPPER_TID": "PD100406",
+    "SHOPPER_VAL_IVA": "7.2",
+    "SHOPPER_VERSIONDF": "2"
+  },
+  "risk": {
+    "score": "0",
+    "parameters": {
+      "USER_DATA2": "DATAFAST"
+    }
+  },
+  "cart": {
+    "items": [
+      {
+        "name": "cursoIngles",
+        "description": "Descripcion:cursoIngles",
+        "quantity": "1",
+        "price": "10"
+      }
+    ]
+  },
+  "buildNumber": "35691ccd2863627fb4807d5a5961a6b912fec50b@2021-07-05 13:46:24 +0000",
+  "timestamp": "2021-07-06 17:40:42+0000",
+  "ndc": "D5EB2D12F60B159F032980A1FF7122A1.uat01-vm-tx04"
+}
